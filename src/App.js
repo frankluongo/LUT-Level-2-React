@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import ToggleRenderProps from './ToggleRenderProps';
+import Toggle from './ToggleRenderProps';
+import ToggleRPC from './ToggleRPC';
 
 class App extends Component {
   render() {
@@ -12,12 +13,25 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <ToggleRenderProps render={({on, toggle}) => (
+
+        <Toggle
+          render={({on, toggle}) => (
           <div>
             {on && <h1>Show Me</h1>}
             <button onClick={toggle}>Show / Hide</button>
           </div>
         )} />
+
+        <ToggleRPC>
+          {({on, toggle}) => (
+            <div>
+              {on && <h1>Show Me</h1>}
+              <button onClick={toggle}>Show / Hide</button>
+            </div>
+          )}
+        </ToggleRPC>
+
+
       </div>
     );
   }
