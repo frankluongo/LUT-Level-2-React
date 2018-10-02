@@ -5,6 +5,7 @@ import './App.css';
 import Toggle from './ToggleRenderProps';
 import ToggleRPC from './ToggleRPC';
 import Portal from './Portal';
+import Modal from './Modal';
 
 class App extends Component {
   render() {
@@ -15,19 +16,13 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
 
-        <Toggle
-          render={({on, toggle}) => (
-            <Fragment>
-              {on && <h1>Show Me</h1>}
-              <button onClick={toggle}>Show / Hide</button>
-            </Fragment>
-        )} />
-
         <ToggleRPC>
           {({on, toggle}) => (
             <Fragment>
-             {on && <Portal><h1>I'm in a portal</h1></Portal>}
-             <button onClick={toggle}>Show / Hide</button>
+              <button onClick={toggle}>Login</button>
+             <Modal on={on} toggle={toggle}>
+              <h1>Hey demons, it's me, ya boy</h1>
+            </Modal>
             </Fragment>
           )}
         </ToggleRPC>
