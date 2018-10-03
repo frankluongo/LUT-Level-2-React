@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Portal from './Portal';
 
+import Icon from './Utilities/Icon';
+
 const ModalWrapper = styled.div`
   position: absolute;
   top: 0;
@@ -31,13 +33,16 @@ const ModalCard = styled.div`
 
   const CloseButton = styled.button`
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 0;
+    right: 0;
+
+    padding: 10px;
 
     text-transform: uppercase;
 
     border: none;
     background-color: transparent;
+    cursor: pointer;
   `;
 
 const Background = styled.div`
@@ -60,7 +65,7 @@ export default class Modal extends Component {
         {on &&
           <ModalWrapper>
             <ModalCard>
-              <CloseButton onClick={toggle}>Close</CloseButton>
+              <CloseButton onClick={toggle}><Icon name="close" /></CloseButton>
               {children}
             </ModalCard>
             <Background onClick={toggle} />
