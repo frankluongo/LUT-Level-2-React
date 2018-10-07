@@ -2,10 +2,7 @@ import React, { Component, Fragment } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import Toggle from './ToggleRenderProps';
-import ToggleRPC from './ToggleRPC';
-import Portal from './Portal';
-import Modal from './Modal';
+import { Toggle, Portal, Modal} from './Utilities';
 
 class App extends Component {
   render() {
@@ -16,7 +13,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
 
-        <ToggleRPC>
+        <Toggle>
           {({on, toggle}) => (
             <Fragment>
               <button onClick={toggle}>Login</button>
@@ -25,7 +22,7 @@ class App extends Component {
             </Modal>
             </Fragment>
           )}
-        </ToggleRPC>
+        </Toggle>
 
 
       </div>
