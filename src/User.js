@@ -11,6 +11,7 @@ export default class User extends Component {
             <h1>User Info</h1>
             <h3>{context.user.name}</h3>
             <p>{context.user.email}</p>
+            <button onClick={context.logout}>Logout</button>
           </div>
         )}
       </UserContext.Consumer>
