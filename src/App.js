@@ -1,39 +1,12 @@
-import React, { Component, Fragment, createContext } from 'react';
+import React, { Component, Fragment } from 'react';
+import { Transition } from 'react-spring';
+
 import logo from './logo.svg';
 import './App.css';
 import { Toggle } from 'Utilities';
-import { Modal } from 'Elements';
+import { Modal, Card } from 'Elements';
 import User from './User';
-import { UserContext } from './UserContext';
-
-class UserProvider extends Component {
-  state = {
-    id: '124',
-    name: 'Frank',
-    email: 'frank@frankluongo.com'
-  }
-
-  logout = () => {
-    this.setState({
-      id: null,
-      name: '',
-      email: ''
-    })
-  }
-
-  render() {
-    return (
-      <UserContext.Provider
-        value={{
-          user: this.state,
-          logout: this.logout
-        }}
-      >
-        {this.props.children}
-      </UserContext.Provider>
-    )
-  }
-}
+import { UserProvider } from './UserProvider';
 
 class App extends Component {
   render() {
@@ -45,21 +18,32 @@ class App extends Component {
             <h1 className="App-title">Welcome to React</h1>
           </header>
           <User />
-
-          <Toggle>
-            {({on, toggle}) => (
-              <Fragment>
-                <button onClick={toggle}>Login</button>
-              <Modal on={on} toggle={toggle}>
-                <h1>Hey demons, it's me, ya boy</h1>
-              </Modal>
-              </Fragment>
-            )}
-          </Toggle>
+          <section>
+            <Toggle>
+              {({on, toggle}) => (
+                <Fragment>
+                  <button onClick={toggle}>Show/Hide</button>
+                  <Transition
+                    from={{opacity: 0}}
+                    enter={{opacity: 1}}
+                    leave={{opacity: 0}}
+                  >
+                    {on && Header}
+                  </Transition>
+                </Fragment>
+              )}
+            </Toggle>
+          </section>
         </div>
       </UserProvider>
     );
   }
 }
+
+const Header = styles => (
+  <Card style={{...styles}}>
+    <h1>Show Me</h1>
+  </Card>
+)
 
 export default App;

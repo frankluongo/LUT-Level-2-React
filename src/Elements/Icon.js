@@ -32,6 +32,9 @@ export default class Icon extends Component {
             Search me!
           </div>
         );
+      default:
+          console.log('sad');
+      break;
     }
   }
 }

@@ -1,6 +1,6 @@
 // Install ES7 React/Redux/GraphQL... plugin
 
-import React, { Component } from 'react'
+import { Component } from 'react'
 
 export default class ToggleRenderProps extends Component {
   state = {
