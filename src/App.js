@@ -33,6 +33,16 @@ class App extends Component {
                 </Fragment>
               )}
             </Toggle>
+            <Toggle>
+              {({on, toggle}) => (
+                <Fragment>
+                  <button onClick={toggle}>Login</button>
+                  <Modal on={on} toggle={toggle}>
+                    <h1>Hey demons, it's me, ya boy</h1>
+                  </Modal>
+                </Fragment>
+              )}
+            </Toggle>
           </section>
         </div>
       </UserProvider>
