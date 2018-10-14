@@ -1,23 +1,26 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Transition } from 'react-spring';
+import { Transition, animated, config } from 'react-spring';
 
 import { Portal, position } from 'Utilities';
 import Icon from './Icon';
 import { Card } from './Cards';
 
 
-const ModalWrapper = styled.div`
-  ${position({})};
-  width: 100%;
-  height: 100%;
+  const ModalWrapper = styled.div`
+    ${position({})};
+    width: 100%;
+    height: 100%;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  `;
 
-const ModalCard = Card.extend`
+
+const AnimCard = Card.withComponent(animated.div);
+
+const ModalCard = AnimCard.extend`
   z-index: 10;
   ${position({pos: 'relative'})};
 
@@ -40,7 +43,7 @@ const ModalCard = Card.extend`
     cursor: pointer;
   `;
 
-const Background = styled.div`
+const Background = styled(animated.div)`
 ${position({})};
 
   width: 100%;
@@ -56,20 +59,27 @@ export default class Modal extends Component {
     return (
       <Portal>
         <Transition
+          native
+          // config={{
+          //   tension: 600,
+          //   friction: 90
+          // }}
+          config={config.gentle}
           from={{opacity: 0, bgOpacity: 0, y: -50}}
           enter={{opacity: 1, bgOpacity: 0.5, y: 0}}
-          leave={{opacity: 0, bgOpacity: 0, y: 200}}
+          leave={{opacity: 0, bgOpacity: 0, y: -50}}
         >
           {on && (
             (styles) => (
             <ModalWrapper>
               <ModalCard style={{
-                transform: `translate3d(0, ${styles.y}px, 0)`,
+                transform: styles.y.interpolate(y => `translate3d(0, ${y}px, 0)`),
+                //transform: `translate3d(0, ${styles.y}px, 0)`,
                 ...styles}}>
                 <CloseButton onClick={toggle}><Icon name="close" /></CloseButton>
                 {children}
               </ModalCard>
-              <Background style={{opacity: styles.bgOpacity}} onClick={toggle} />
+              <Background style={{opacity: styles.bgOpacity.interpolate(bgOpacity => bgOpacity)}} onClick={toggle} />
             </ModalWrapper>
           ))}
         </Transition>
