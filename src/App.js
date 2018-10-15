@@ -8,6 +8,8 @@ import { Modal, Card } from 'Elements';
 import User from './User';
 import { UserProvider } from './UserProvider';
 
+import Drag from './Drag';
+
 class App extends Component {
   render() {
     return (
@@ -17,22 +19,8 @@ class App extends Component {
             <img src={logo} className="App-logo" alt="logo" />
             <h1 className="App-title">Welcome to React</h1>
           </header>
-          <User />
+          <Drag />
           <section>
-            <Toggle>
-              {({on, toggle}) => (
-                <Fragment>
-                  <button onClick={toggle}>Show/Hide</button>
-                  <Transition
-                    from={{opacity: 0, bg: '#82d8d8', height: '0px'}}
-                    enter={{opacity: 1, bg: '#524763', height: '100%'}}
-                    leave={{opacity: 0, bg: '#82d8d8', height: '0px'}}
-                  >
-                    {on && Header}
-                  </Transition>
-                </Fragment>
-              )}
-            </Toggle>
             <Toggle>
               {({on, toggle}) => (
                 <Fragment>
@@ -49,6 +37,24 @@ class App extends Component {
     );
   }
 }
+
+
+// <User />
+
+// <Toggle>
+// {({on, toggle}) => (
+//   <Fragment>
+//     <button onClick={toggle}>Show/Hide</button>
+//     <Transition
+//       from={{opacity: 0, bg: '#82d8d8', height: '0px'}}
+//       enter={{opacity: 1, bg: '#524763', height: '100%'}}
+//       leave={{opacity: 0, bg: '#82d8d8', height: '0px'}}
+//     >
+//       {on && Header}
+//     </Transition>
+//   </Fragment>
+// )}
+// </Toggle>
 
 const Header = styles => (
   <Card style={{
